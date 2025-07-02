@@ -2038,20 +2038,47 @@
 <div class="contact-container"><div class="lhs-column"><div class="contact-content">
 <h2 class="section-title">Let's Elevate Your AI Ambitions</h2>
 <p style="color: var(--text-secondary); font-size: 1.1rem;">Ready to transform your organization with intelligent systems? Let's discuss how we can architect your future together.</p>
-<form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+<form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form" id="contactForm">
   <input type="hidden" name="form-name" value="contact" />
   <p style="display:none;">
     <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
   </p>
 
   <div class="form-group">
-    <input class="form-input" name="name" placeholder="Your Name" required type="text"/>
-    <input class="form-input" name="email" placeholder="Email Address" required type="email"/>
+    <input class="form-input" name="name" placeholder="Your Name" required type="text" />
+    <input class="form-input" name="email" placeholder="Email Address" required type="email" />
   </div>
-  <input class="form-input" name="company" placeholder="Company Name" type="text"/>
+  <input class="form-input" name="company" placeholder="Company Name" type="text" />
   <textarea class="form-input" name="message" placeholder="Tell me about your AI ambitions..." required></textarea>
-  <button class="submit-btn" type="submit">Start the Conversation</button>
+  <button class="submit-btn" type="submit" id="submitBtn">Start the Conversation</button>
 </form>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent default form submit
+
+    const form = this;
+    const btn = document.getElementById('submitBtn');
+    const formData = new FormData(form);
+
+    // Send data using fetch to Netlify
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString()
+    })
+    .then(() => {
+      btn.textContent = "Message Sent ✔️";
+      btn.disabled = true;
+      btn.style.backgroundColor = "#28a745"; // green success color
+      btn.style.transition = "all 0.3s ease-in-out";
+    })
+    .catch(() => {
+      btn.textContent = "Error. Try Again";
+      btn.style.backgroundColor = "#dc3545"; // red error
+    });
+  });
+</script>
 </div></div><div class="rhs-column" style="display: flex; align-items: center; justify-content: center; padding: 1rem;"><div class="contact-info-text">
 <p>Just fill in the form, and we’ll take it from there. Here’s what happens next:</p><br/>
 <ul>
