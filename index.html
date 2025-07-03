@@ -1313,9 +1313,19 @@
                 max-height: 100%;
             }
             
-            .about-section {
-                display: none;
-            }
+            .about-content {
+    display: block;
+    gap: 0;
+  }
+  .impact-metrics {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .metric.wide {
+    grid-column: auto;
+  }
+}
             
             .services-grid,
             .case-studies {
@@ -1651,6 +1661,28 @@
 }
 </style>
 </head>
+<script>
+// filepath: /Users/heshambadr/Downloads/index (90).html
+// ...existing code...
+
+document.addEventListener('DOMContentLoaded', function() {
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  const navLinkItems = document.querySelectorAll('.nav-links a');
+
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('active');
+  });
+
+  navLinkItems.forEach(link => {
+    link.addEventListener('click', function() {
+      hamburger.classList.remove('active');
+      navLinks.classList.remove('active');
+    });
+  });
+});
+</script>
 <body>
 <!-- Floating Particles -->
 <div class="particles" id="particles"></div>
