@@ -621,6 +621,9 @@
         /* Services Section */
         .services-grid {
             display: grid;
+        }
+        @media (min-width: 1025px) {
+            .services-grid {
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             padding: 1rem;
@@ -782,6 +785,9 @@
         .case-studies {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        @media (min-width: 1025px) {
+            .case-studies {
             gap: 2rem;
             padding: 1rem;
         }
@@ -1326,12 +1332,6 @@
     grid-column: auto;
   }
 }
-            
-            .services-grid,
-            .case-studies {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
             
             .section {
                 padding: 3rem 1rem;
